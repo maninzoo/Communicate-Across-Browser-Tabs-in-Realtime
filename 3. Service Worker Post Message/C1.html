@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3. Service Worker Post Message</title>
+</head>
+<body>
+  <script>
+    let serviceWorker;
+
+    navigator.serviceWorker.register('./sw.js').then((registration) => {
+      console.log('Service Worker registered!: ', registration);
+
+      if( registration.active ) {
+        serviceWorker = registration.active;
+      }
+
+      if( serviceWorker ) {
+        serviceWorker.postMessage("Hello, world!");
+      }  
+    }).catch((error) => {
+      console.error('Error registring service worker: ', error);
+    });
+  </script>
+</body>
+</html>
